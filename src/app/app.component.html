@@ -1,12 +1,11 @@
 <div class="container-fluid mt-4">
   <div class="row">
     <div class="col-sm-6">
-      <app-book-list class="book-list" [books]="(booksFacade.books$ | async)!" (add)="onAdd($event)"></app-book-list>
+      <app-book-list class="book-list" [books]="booksFacade.books()" (add)="onAdd($event)"></app-book-list>
     </div>
 
     <div class="col-sm-6">
-      <app-book-collection class="book-collection" [books]="(booksFacade.bookCollection$ | async)!"
-        (remove)="onRemove($event)">
+      <app-book-collection class="book-collection" [books]="booksFacade.bookCollection()" (remove)="onRemove($event)">
       </app-book-collection>
     </div>
   </div>

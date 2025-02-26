@@ -1,18 +1,17 @@
 import { Store } from "@ngrx/store";
 import { BooksActions, BooksApiActions } from "./books.actions";
 import { selectBookCollection, selectBooks } from "./books.selector";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Injectable, Signal } from "@angular/core";
 import { Book } from '../core/book-list/book.model';
 
 @Injectable()
 export class BooksFacade {
-    books$: Observable<ReadonlyArray<Book>>;
-    bookCollection$: Observable<Array<Book>>;
+    books: Signal<ReadonlyArray<Book>>;
+    bookCollection: Signal<Array<Book>>;
 
     constructor(private store: Store) {
-        this.books$ = this.store.select(selectBooks);
-        this.bookCollection$ = this.store.select(selectBookCollection);
+        this.books = this.store.selectSignal(selectBooks);
+        this.bookCollection = this.store.selectSignal(selectBookCollection);
     }
 
     addBook(bookId: string) {
