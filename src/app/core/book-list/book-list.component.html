@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+        {{ title() }}
+    </div>
+
+    <ul class="list-group list-group-flush">
+        @for (book of books(); track $index) {
+        <li class="list-group-item">
+            <div class="row justify-content-between">
+                <div class="col-sm-6">
+                    <strong>{{ book.volumeInfo.title }}</strong>
+                    <br>
+                    <small>by {{book.volumeInfo.authors}}</small>
+                </div>
+
+                <div class="col-sm-6 d-flex align-items-center justify-content-end">
+                    <button [class]="'btn btn-outline-' + buttonColor()" (click)="clickOnButton.emit(book.id)">
+                        {{ buttonText() }}
+                    </button>
+                </div>
+            </div>
+        </li>
+        }
+    </ul>
+</div>
